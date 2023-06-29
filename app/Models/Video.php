@@ -17,7 +17,7 @@ class Video extends Model
     ];
 
     public function comments() {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->morphMany(Comment::class, 'commentable')->select(['commentable_id', 'commentable_type', 'user_username', 'text']);
     }
 
     public function user() {
