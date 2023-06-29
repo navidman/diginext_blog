@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\PostFacade;
-use App\Http\Requests\PostRequest;
+use App\Facades\VideoFacade;
+use App\Http\Requests\VideoRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class PostController extends Controller
+class VideoController extends Controller
 {
-    public function store(PostRequest $request)
+    public function store(VideoRequest $request)
     {
         if (!$request->hasHeader('User-ID')) {
             return response('The User-ID header is required.', Response::HTTP_BAD_REQUEST);
         }
         try {
-            $post = PostFacade::createPost($request);
+            $post = VideoFacade::createVideo($request);
             return response($post->id, Response::HTTP_CREATED);
         } catch (\Throwable $throwable) {
             report($throwable);
@@ -25,13 +25,13 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = PostFacade::getPost($id);
+        $post = VideoFacade::getVideo($id);
         return response($post, Response::HTTP_CREATED);
 
     }
 
     public function comment(Request $request)
     {
-        dd(2);
+        dd(1);
     }
 }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('user_username');
+            $table->foreign('user_username')->references('username')->on('users')->onDelete('cascade');
             $table->string('title')->unique();
             $table->longText('content');
             $table->timestamps();

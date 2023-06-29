@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('commentable_type');
 
 
-            $table->unsignedBigInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('parent_id')->nullable();
 
 
             $table->boolean('approved')->default(0);

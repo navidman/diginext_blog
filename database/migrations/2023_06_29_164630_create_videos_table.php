@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
+            $table->string('user_username');
+            $table->foreign('user_username')->references('username')->on('users')->onDelete('cascade');
             $table->string('title')->unique();
             $table->text('url');
             $table->timestamps();

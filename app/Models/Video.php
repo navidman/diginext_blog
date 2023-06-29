@@ -9,7 +9,17 @@ class Video extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'url',
+        'user_username',
+    ];
+
     public function comments() {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_username');
     }
 }

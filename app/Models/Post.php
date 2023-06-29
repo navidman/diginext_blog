@@ -12,9 +12,14 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
+        'user_username',
     ];
 
     public function comments() {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_username');
     }
 }

@@ -13,7 +13,11 @@ class Comment extends Model
         return $this->morphTo();
     }
 
-    public function child() {
-        return $this->hasMany(Comment::class , 'parent_id' , 'id');
+    public function user() {
+        return $this->belongsTo(User::class, 'user_username');
     }
+
+//    public function child() {
+//        return $this->hasMany(Comment::class , 'parent_id' , 'id');
+//    }
 }
