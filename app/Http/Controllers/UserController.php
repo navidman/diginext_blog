@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         try {
             $user = UserFacade::getUser($id);
-            return response($user, Response::HTTP_CREATED);
+            return response($user, Response::HTTP_OK);
         } catch (\Throwable $throwable) {
             report($throwable);
             return response('Internal server error!', Response::HTTP_INTERNAL_SERVER_ERROR);

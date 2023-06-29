@@ -17,7 +17,7 @@ class VideoRepository implements VideoRepositoryInterface
 
     public function getById($id)
     {
-        $video = Video::select(['title', 'url', 'user_username'])->whereId($id)->firstOrFail();
+        $video = Video::select(['id', 'title', 'url', 'user_username'])->whereId($id)->firstOrFail();
         return $video;
     }
 

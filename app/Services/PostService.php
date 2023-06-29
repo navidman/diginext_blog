@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Post;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 
@@ -35,5 +36,15 @@ class PostService
     {
         $user = $this->userRepository->getById($userId);
         return $user->username;
+    }
+
+    public function createComment($id, $data)
+    {
+        //TODO extract these to repository
+        $post = Post::find($id);
+        return $post->comments()->create([
+            'user_username' => $this->getUsernameFromUserId($data->header('User-ID')),
+            'text' => $data->text,
+        ]);
     }
 }

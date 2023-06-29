@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Video;
 use App\Repositories\Interfaces\VideoRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 
@@ -35,5 +36,15 @@ class VideoService
     {
         $user = $this->userRepository->getById($userId);
         return $user->username;
+    }
+
+    public function createComment($id, $data)
+    {
+        //TODO extract these to repository
+        $video = Video::find($id);
+        return $video->comments()->create([
+            'user_username' => $this->getUsernameFromUserId($data->header('User-ID')),
+            'text' => $data->text,
+        ]);
     }
 }

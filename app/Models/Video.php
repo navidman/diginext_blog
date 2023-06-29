@@ -9,6 +9,7 @@ class Video extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['id'];
     protected $fillable = [
         'title',
         'url',

@@ -17,7 +17,7 @@ class PostRepository implements PostRepositoryInterface
 
     public function getById($id)
     {
-        $post = Post::select(['title', 'content', 'user_username'])->whereId($id)->firstOrFail();
+        $post = Post::select(['id', 'title', 'content', 'user_username'])->whereId($id)->firstOrFail();
         return $post;
     }
 
